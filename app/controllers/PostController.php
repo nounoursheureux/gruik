@@ -103,7 +103,7 @@ class PostController extends BaseController {
         $posts = $postRepo->byUserIdQuery(Sentry::getUser()->id)
             ->get();
         $zip = new ZipArchive();
-        $archivename = 'gruik_' . Sentry::getUser()->email . '.zip';
+        $archivename = 'gruik_' . Sentry::getUser()->username . '.zip';
         $zip->open($archivename,ZipArchive::CREATE);
         $posts->each(function($post) use($zip) {
             $zip->addFromString($post->title . '.md',$post->md_content);
