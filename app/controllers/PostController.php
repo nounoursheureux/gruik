@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Http\Response;
 
 class PostController extends BaseController {
 
@@ -94,6 +95,28 @@ class PostController extends BaseController {
                     ->with('user', Sentry::getUser())
                     ->with('author', $post->user)
                     ->with('post', $post);
+    }
+
+    public function export()
+    {
+        $postRepo = App::make('Gruik\Repo\Post\PostInterface');
+        $posts = $postRepo->byUserIdQuery(Sentry::getUser()->id)
+            ->get();
+        $zip = new ZipArchive();
+        $archivename = 'gruik_' . Sentry::getUser()->email . '.zip';
+        $zip->open($archivename,ZipArchive::CREATE);
+        $posts->each(function($post) use($zip) {
+            $zip->addFromString($post->title . '.md',$post->md_content);
+        });
+        $zip->close();
+        // If you know how to get the raw binary data without reopening the file, open an issue or a pull request
+        $fp = fopen($archivename,'r');
+        $content = fread($fp,filesize($archivename));
+        fclose($fp);
+        unlink($archivename);
+        return (new Response($content,200))
+            ->header('Content-Type','archive/zip')
+            ->header('Content-Disposition','attachment; filename="' . $archivename . '"');
     }
 
 }

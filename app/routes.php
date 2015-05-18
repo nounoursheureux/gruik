@@ -36,6 +36,7 @@ Route::group(array('before' => 'auth'), function()
     Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'PostController@dashboard']);
     Route::get('/tags', ['uses' => 'TagController@all']);
     Route::get('/settings', ['uses' => 'SettingsController@view']);
+    Route::get('/export',['uses' => 'PostController@export']);
 
 });
 

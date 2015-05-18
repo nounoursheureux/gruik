@@ -22,6 +22,7 @@
                 <i class="fa fa-files-o"></i> Your gruiks
                 <button ng-cloak ng-click="deleteSelected()" ng-show="selected.posts.length > 0" style="margin-top:-5px;margin-left: 5px;" class="pull-right btn-sm btn btn-danger"><i class="fa fa-times"></i> Delete selected</button>
                 <a href="{% URL::to('create') %}" style="margin-top:-5px;" class="pull-right btn-sm btn btn-success"><i class="fa fa-plus"></i> Create</a>
+                <a href="{% URL::to('export') %}" ng-show="posts.length > 0" style="margin-top:-5px;margin-right: 5px;" class="pull-right btn-sm btn btn-info"><i class="fa fa-cloud-download"></i> Export</a>
             </div>
             <div class="panel-body">
 
