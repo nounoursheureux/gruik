@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+<title>Gruik - {% $visited_user->username %}</title>
+@stop
+
 @section('controller')
     ng-controller="UserProfileCtrl"
 @stop

@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+<title>Gruik - {% $post->title %}</title>
+@stop
+
 @section('controller')
     ng-controller="ViewCtrl"
 @stop

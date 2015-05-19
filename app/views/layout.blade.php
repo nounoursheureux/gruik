@@ -2,7 +2,6 @@
 <html ng-app="app">
     <head>
         <meta charset="UTF-8">
-        <title>Gruik.</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <link rel="Shortcut Icon" type="image/png" href="/img/gruik-black.png" />
 
@@ -23,6 +22,7 @@
         </style>
 
         <script src="/vendor/angular/angular.min.js" type="text/javascript"></script>
+        @yield('title','<title>Gruik.</title>')
 
     </head>
 
