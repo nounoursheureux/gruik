@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+<title>Gruik - Editing</title>
+@stop
+
 @section('controller')
     ng-controller="CreateCtrl"
 @stop
